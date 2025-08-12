@@ -9,25 +9,25 @@
 The stack included: PostgreSQL, EC2, Airflow, Terraform, Streamlit, and DBT.
 
 Project:
-![alt text](project1/doc/project_structure.png)
+![alt text](doc/project_structure.png)
 
 Dimensional model:
-![alt text](project1/doc/model.png)
+![alt text](doc/model.png)
 
 ## Steps
 
 1. Using the Linux terminal, install the necessary programs.: AWS CLI, Python, VS Code, Terraform, Docker and DBT. 
 > I chose to work with Linux to deepen my understanding of the operating system. However, I opted for WSL (Windows Subsystem for Linux) to maintain compatibility with essential tools like Tableau, which aren't supported on Linux.
-2. Create the file [population_extraction.py](project1/pipeline/1.extraction/population_extraction.py) to extract the data from the ibge api and stores it in duckdb.
-3. Create the file [main.tf](project1/infra/main.tf) with the specifications of the remote environment you want to create.
-4. Create the file [population_ingestion.py](project1/pipeline/2.ingestion/population_ingestion.py) in python to import the data from duckdb to a postgreSQL in a remote EC2 environment.
-5. Create DBT models transforming the data:[DBT models folder](project1/pipeline/3.transformation/dbt_project1/models/)
-6. Create an file [app.py](project1/pipeline/4.service/streamlit/app.py) defining the connections and visualisation options you want to build.
+2. Create the file [population_extraction.py](pipeline/1.extraction/population_extraction.py) to extract the data from the ibge api and stores it in duckdb.
+3. Create the file [main.tf](infra/main.tf) with the specifications of the remote environment you want to create.
+4. Create the file [population_ingestion.py](pipeline/2.ingestion/population_ingestion.py) in python to import the data from duckdb to a postgreSQL in a remote EC2 environment.
+5. Create DBT models transforming the data:[DBT models folder](pipeline/3.transformation/dbt_project1/models/)
+6. Create an file [app.py](pipeline/4.service/streamlit/app.py) defining the connections and visualisation options you want to build.
 > Connect your github account to streamlit indicating where it should look for the file and wait for it to run.
-![alt text](project1/doc/streamlit.png)
+![alt text](doc/streamlit.png)
 > To avoid leaking credentials, set up variables within the streamlit application.
-![alt text](project1/doc/streamlit_secrets.png)
-10. Create the files [docker_compose.yml](project1/infra/docker/docker_compose.yml) and [Dockerfile](project1/infra/docker/Dockerfile) to activate airflow.
-11. Create the file [start_project1.sh](project1/start_project1.sh) to execute the step with one command.
+![alt text](doc/streamlit_secrets.png)
+10. Create the files [docker_compose.yml](infra/docker/docker_compose.yml) and [Dockerfile](infra/docker/Dockerfile) to activate airflow.
+11. Create the file [start_project1.sh](start_project1.sh) to execute the step with one command.
 > In the airflow the dag should appear like this:
-![alt text](project1/doc/airflow2.png)
+![alt text](doc/airflow2.png)
